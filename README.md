@@ -1,4 +1,4 @@
-![CI/VSG](https://github.com/Malcolmnixon/FpgaDemo/workflows/CI/VSG/badge.svg) ![CI/VUnit](https://github.com/Malcolmnixon/FpgaDemo/workflows/CI/VUnit/badge.svg) [![Documented](https://codedocs.xyz/Malcolmnixon/FpgaDemo.svg)](https://codedocs.xyz/Malcolmnixon/FpgaDemo/)
+[![CI/VSG](https://github.com/Malcolmnixon/FpgaDemo/workflows/CI/VSG/badge.svg)](https://github.com/Malcolmnixon/FpgaDemo/commits/master) [![CI/VUnit](https://github.com/Malcolmnixon/FpgaDemo/workflows/CI/VUnit/badge.svg)](https://github.com/Malcolmnixon/FpgaDemo/commits/master) [![Documented](https://codedocs.xyz/Malcolmnixon/FpgaDemo.svg)](https://codedocs.xyz/Malcolmnixon/FpgaDemo/)
 
 # FPGA Demo Project
 This project demonstrates FPGA development including
