@@ -1,0 +1,36 @@
+# Standard files
+*.bak
+*.log
+
+# Lattice Diamond files
+.run_manager.ini
+.setting.ini
+.spread_sheet.ini
+.spreadsheet_view.ini
+.floorplanner.ini
+.build_status
+._Real_._Math_.vhd
+.vdbs/
+generate_*.tcl
+xxx_lse_*
+*_prim.v
+*_impl*
+*.dir/
+*.ccl
+*.html
+*.twr
+*.xml
+
+# Active-HDL Simulations
+library.cfg
+*.asdb
+*.mgf
+*.lib
+fpga/targets/*/simulation/*
+!fpga/targets/*/simulation/*.spf
+
+# VUnit output
+vunit_out
+
+# Doxygen output
+docs/html/
