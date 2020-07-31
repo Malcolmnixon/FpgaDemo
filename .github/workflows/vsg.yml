@@ -20,4 +20,4 @@ jobs:
       run: python -m pip install vsg
       
     - name: VHDL Style Guide Checks
-      run: python -m vsg -c vsg_rules.yaml vsg_files.yaml
+      run: python -m vsg -c vsg_style.yaml vsg_files.yaml
