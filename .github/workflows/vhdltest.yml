@@ -1,0 +1,27 @@
+name: CI/VHDLTest
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - uses: ghdl/setup-ghdl-ci@nightly
+      with:
+        backend: mcode
+
+    - name: Setup Python
+      uses: actions/setup-python@v2
+    
+    - name: Install VHDLTest
+      run: pip install -i https://test.pypi.org/simple/ VHDLTest
+      
+    - name: VHDLTest Utility
+      run: python -m VHDLTest --config test.yaml

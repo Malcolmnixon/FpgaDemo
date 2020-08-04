@@ -1,0 +1,6 @@
+files:
+ - common/source/clk_div_n.vhd
+ - common/sim_vhdltest/clk_div_n_tb.vhd
+ 
+tests:
+ - clk_div_n_tb
