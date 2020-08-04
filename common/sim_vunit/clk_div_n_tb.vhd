@@ -76,43 +76,43 @@ BEGIN
         rst    <= '1';
         cnt_en <= '0';
         WAIT FOR c_clk_period;
-        ASSERT (cnt_out = '0') REPORT "Expected output low while in reset" SEVERITY warning;
+        ASSERT (cnt_out = '0') REPORT "Expected output low while in reset" SEVERITY error;
         WAIT FOR c_clk_period;
-        ASSERT (cnt_out = '0') REPORT "Expected output low while in reset" SEVERITY warning;
+        ASSERT (cnt_out = '0') REPORT "Expected output low while in reset" SEVERITY error;
         WAIT FOR c_clk_period;
-        ASSERT (cnt_out = '0') REPORT "Expected output low while in reset" SEVERITY warning;
+        ASSERT (cnt_out = '0') REPORT "Expected output low while in reset" SEVERITY error;
         WAIT FOR c_clk_period;
-        ASSERT (cnt_out = '0') REPORT "Expected output low while in reset" SEVERITY warning;
+        ASSERT (cnt_out = '0') REPORT "Expected output low while in reset" SEVERITY error;
         
         -- Take out of reset, but keep counting disabled for 4 clock periods
         rst <= '0';
         WAIT FOR c_clk_period;
-        ASSERT (cnt_out = '0') REPORT "Expected output low while disabled" SEVERITY warning;
+        ASSERT (cnt_out = '0') REPORT "Expected output low while disabled" SEVERITY error;
         WAIT FOR c_clk_period;
-        ASSERT (cnt_out = '0') REPORT "Expected output low while disabled" SEVERITY warning;
+        ASSERT (cnt_out = '0') REPORT "Expected output low while disabled" SEVERITY error;
         WAIT FOR c_clk_period;
-        ASSERT (cnt_out = '0') REPORT "Expected output low while disabled" SEVERITY warning;
+        ASSERT (cnt_out = '0') REPORT "Expected output low while disabled" SEVERITY error;
         WAIT FOR c_clk_period;
-        ASSERT (cnt_out = '0') REPORT "Expected output low while disabled" SEVERITY warning;
+        ASSERT (cnt_out = '0') REPORT "Expected output low while disabled" SEVERITY error;
         
         -- Enable counting and verify output every fourth clock period
         cnt_en <= '1';
         WAIT FOR c_clk_period;
-        ASSERT (cnt_out = '0') REPORT "Expected output low while at time 1/4" SEVERITY warning;
+        ASSERT (cnt_out = '0') REPORT "Expected output low while at time 1/4" SEVERITY error;
         WAIT FOR c_clk_period;
-        ASSERT (cnt_out = '0') REPORT "Expected output low while at time 2/4" SEVERITY warning;
+        ASSERT (cnt_out = '0') REPORT "Expected output low while at time 2/4" SEVERITY error;
         WAIT FOR c_clk_period;
-        ASSERT (cnt_out = '0') REPORT "Expected output low while at time 3/4" SEVERITY warning;
+        ASSERT (cnt_out = '0') REPORT "Expected output low while at time 3/4" SEVERITY error;
         WAIT FOR c_clk_period;
-        ASSERT (cnt_out = '1') REPORT "Expected output high while at time 4/4" SEVERITY warning;
+        ASSERT (cnt_out = '1') REPORT "Expected output high while at time 4/4" SEVERITY error;
         WAIT FOR c_clk_period;
-        ASSERT (cnt_out = '0') REPORT "Expected output low while at time 1/4" SEVERITY warning;
+        ASSERT (cnt_out = '0') REPORT "Expected output low while at time 1/4" SEVERITY error;
         WAIT FOR c_clk_period;
-        ASSERT (cnt_out = '0') REPORT "Expected output low while at time 2/4" SEVERITY warning;
+        ASSERT (cnt_out = '0') REPORT "Expected output low while at time 2/4" SEVERITY error;
         WAIT FOR c_clk_period;
-        ASSERT (cnt_out = '0') REPORT "Expected output low while at time 3/4" SEVERITY warning;
+        ASSERT (cnt_out = '0') REPORT "Expected output low while at time 3/4" SEVERITY error;
         WAIT FOR c_clk_period;
-        ASSERT (cnt_out = '1') REPORT "Expected output high while at time 4/4" SEVERITY warning;
+        ASSERT (cnt_out = '1') REPORT "Expected output high while at time 4/4" SEVERITY error;
 		
         -- Finish the test
         test_runner_cleanup(runner);
