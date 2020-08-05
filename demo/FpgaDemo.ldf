@@ -4,13 +4,19 @@
     <Implementation title="impl1" dir="impl1" description="impl1" synthesis="lse" default_strategy="Strategy1">
         <Options def_top="fpga_demo"/>
         <Source name="../common/source/clk_div_n.vhd" type="VHDL" type_short="VHDL">
-            <Options top_module="clk_div_n"/>
+            <Options/>
         </Source>
         <Source name="impl1/IPexpress/pll.vhd" type="VHDL" type_short="VHDL">
             <Options/>
         </Source>
         <Source name="impl1/source/fpga_demo.vhd" type="VHDL" type_short="VHDL">
             <Options top_module="fpga_demo"/>
+        </Source>
+        <Source name="../common/sim/clk_div_n_long_code_tb.vhd" type="VHDL" type_short="VHDL" syn_sim="SimOnly">
+            <Options/>
+        </Source>
+        <Source name="../common/sim/clk_div_n_stimulus_array_tb.vhd" type="VHDL" type_short="VHDL" syn_sim="SimOnly">
+            <Options/>
         </Source>
         <Source name="FpgaDemo.lpf" type="Logic Preference" type_short="LPF">
             <Options/>

@@ -1,6 +1,6 @@
 -------------------------------------------------------------------------------
 --! @file
---! @brief Clock divider test bench
+--! @brief Clock divider test bench using 'long-code' pattern
 -------------------------------------------------------------------------------
 
 --! Using IEEE library
@@ -13,11 +13,11 @@ USE ieee.std_logic_1164.ALL;
 USE ieee.numeric_std.ALL;
 
 --! @brief clk_div_n test bench
-ENTITY clk_div_n_tb IS
-END ENTITY clk_div_n_tb;
+ENTITY clk_div_n_long_code_tb IS
+END ENTITY clk_div_n_long_code_tb;
 
---! Architecture tb of clk_div_n_tb entity
-ARCHITECTURE tb OF clk_div_n_tb IS
+--! Architecture tb of clk_div_n_long_code_tb entity
+ARCHITECTURE tb OF clk_div_n_long_code_tb IS
 
     --! Test bench clock period
     CONSTANT c_clk_period : time := 10 ns;
