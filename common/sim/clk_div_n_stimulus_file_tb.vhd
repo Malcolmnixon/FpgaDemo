@@ -25,18 +25,6 @@ END ENTITY clk_div_n_stimulus_file_tb;
 --! Architecture tb of clk_div_n_stimulus_file_tb entity
 ARCHITECTURE tb OF clk_div_n_stimulus_file_tb IS
 
-    --! Stimulus record type
-    TYPE t_stimulus IS RECORD
-        name      : string(1 TO 20);
-        clk_in    : std_logic_vector(0 TO 15);
-        rst_in    : std_logic_vector(0 TO 15);
-        cnt_en_in : std_logic_vector(0 TO 15);
-        cnt_out   : std_logic_vector(0 TO 15);
-    END RECORD t_stimulus;
-    
-    --! Stimulus array type
-    TYPE t_stimulus_array IS ARRAY(natural RANGE <>) OF t_stimulus;
-    
     --! Test bench clock period
     CONSTANT c_clk_period : time := 10 ns;
     
@@ -76,14 +64,17 @@ BEGIN
         
     BEGIN
     
-        -- Open the stimulus file
+        -- Open the stimulus file (and skip comment line)
         file_open(file_stimulus, "common/sim/clk_div_n_stimulus_file.txt", read_mode);
+        readline(file_stimulus, v_stimulus_line);
 
         -- Loop over the file
         WHILE NOT endfile(file_stimulus) LOOP
         
             -- Read the next line
             readline(file_stimulus, v_stimulus_line);
+            read(v_stimulus_line, v_name);
+            read(v_stimulus_line, v_space);
             read(v_stimulus_line, v_clk_in);
             read(v_stimulus_line, v_space);
             read(v_stimulus_line, v_rst_in);
@@ -91,8 +82,6 @@ BEGIN
             read(v_stimulus_line, v_cnt_en_in);
             read(v_stimulus_line, v_space);
             read(v_stimulus_line, v_cnt_out);
-            read(v_stimulus_line, v_space);
-            read(v_stimulus_line, v_name);
 
             -- Log start of stimulus
             REPORT "Starting: " & v_name SEVERITY note;
