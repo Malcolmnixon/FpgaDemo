@@ -61,47 +61,109 @@ BEGIN
     BEGIN
     
         -- Reset for 4 clock periods
+        REPORT "Starting: Hold in reset" SEVERITY note;
         rst    <= '1';
         cnt_en <= '0';
         WAIT FOR c_clk_period;
-        ASSERT (cnt_out = '0') REPORT "Expected output low while in reset" SEVERITY error;
+        ASSERT (cnt_out = '0') REPORT "Expected 0 but got " & std_logic'image(cnt_out) SEVERITY error;
         WAIT FOR c_clk_period;
-        ASSERT (cnt_out = '0') REPORT "Expected output low while in reset" SEVERITY error;
+        ASSERT (cnt_out = '0') REPORT "Expected 0 but got " & std_logic'image(cnt_out) SEVERITY error;
         WAIT FOR c_clk_period;
-        ASSERT (cnt_out = '0') REPORT "Expected output low while in reset" SEVERITY error;
+        ASSERT (cnt_out = '0') REPORT "Expected 0 but got " & std_logic'image(cnt_out) SEVERITY error;
         WAIT FOR c_clk_period;
-        ASSERT (cnt_out = '0') REPORT "Expected output low while in reset" SEVERITY error;
+        ASSERT (cnt_out = '0') REPORT "Expected 0 but got " & std_logic'image(cnt_out) SEVERITY error;
+        WAIT FOR c_clk_period;
+        ASSERT (cnt_out = '0') REPORT "Expected 0 but got " & std_logic'image(cnt_out) SEVERITY error;
+        WAIT FOR c_clk_period;
+        ASSERT (cnt_out = '0') REPORT "Expected 0 but got " & std_logic'image(cnt_out) SEVERITY error;
+        WAIT FOR c_clk_period;
+        ASSERT (cnt_out = '0') REPORT "Expected 0 but got " & std_logic'image(cnt_out) SEVERITY error;
+        WAIT FOR c_clk_period;
+        ASSERT (cnt_out = '0') REPORT "Expected 0 but got " & std_logic'image(cnt_out) SEVERITY error;
         
         -- Take out of reset, but keep counting disabled for 4 clock periods
+        REPORT "Starting: Not enabled" SEVERITY note;
         rst <= '0';
         WAIT FOR c_clk_period;
-        ASSERT (cnt_out = '0') REPORT "Expected output low while disabled" SEVERITY error;
+        ASSERT (cnt_out = '0') REPORT "Expected 0 but got " & std_logic'image(cnt_out) SEVERITY error;
         WAIT FOR c_clk_period;
-        ASSERT (cnt_out = '0') REPORT "Expected output low while disabled" SEVERITY error;
+        ASSERT (cnt_out = '0') REPORT "Expected 0 but got " & std_logic'image(cnt_out) SEVERITY error;
         WAIT FOR c_clk_period;
-        ASSERT (cnt_out = '0') REPORT "Expected output low while disabled" SEVERITY error;
+        ASSERT (cnt_out = '0') REPORT "Expected 0 but got " & std_logic'image(cnt_out) SEVERITY error;
         WAIT FOR c_clk_period;
-        ASSERT (cnt_out = '0') REPORT "Expected output low while disabled" SEVERITY error;
+        ASSERT (cnt_out = '0') REPORT "Expected 0 but got " & std_logic'image(cnt_out) SEVERITY error;
+        WAIT FOR c_clk_period;
+        ASSERT (cnt_out = '0') REPORT "Expected 0 but got " & std_logic'image(cnt_out) SEVERITY error;
+        WAIT FOR c_clk_period;
+        ASSERT (cnt_out = '0') REPORT "Expected 0 but got " & std_logic'image(cnt_out) SEVERITY error;
+        WAIT FOR c_clk_period;
+        ASSERT (cnt_out = '0') REPORT "Expected 0 but got " & std_logic'image(cnt_out) SEVERITY error;
+        WAIT FOR c_clk_period;
+        ASSERT (cnt_out = '0') REPORT "Expected 0 but got " & std_logic'image(cnt_out) SEVERITY error;
         
         -- Enable counting and verify output every fourth clock period
+        REPORT "Starting: Normal counting 1" SEVERITY note;
         cnt_en <= '1';
         WAIT FOR c_clk_period;
-        ASSERT (cnt_out = '0') REPORT "Expected output low while at time 1/4" SEVERITY error;
+        ASSERT (cnt_out = '0') REPORT "Expected 0 but got " & std_logic'image(cnt_out) SEVERITY error;
         WAIT FOR c_clk_period;
-        ASSERT (cnt_out = '0') REPORT "Expected output low while at time 2/4" SEVERITY error;
+        ASSERT (cnt_out = '0') REPORT "Expected 0 but got " & std_logic'image(cnt_out) SEVERITY error;
         WAIT FOR c_clk_period;
-        ASSERT (cnt_out = '0') REPORT "Expected output low while at time 3/4" SEVERITY error;
+        ASSERT (cnt_out = '0') REPORT "Expected 0 but got " & std_logic'image(cnt_out) SEVERITY error;
         WAIT FOR c_clk_period;
-        ASSERT (cnt_out = '1') REPORT "Expected output high while at time 4/4" SEVERITY error;
+        ASSERT (cnt_out = '1') REPORT "Expected 1 but got " & std_logic'image(cnt_out) SEVERITY error;
         WAIT FOR c_clk_period;
-        ASSERT (cnt_out = '0') REPORT "Expected output low while at time 1/4" SEVERITY error;
+        ASSERT (cnt_out = '0') REPORT "Expected 0 but got " & std_logic'image(cnt_out) SEVERITY error;
         WAIT FOR c_clk_period;
-        ASSERT (cnt_out = '0') REPORT "Expected output low while at time 2/4" SEVERITY error;
+        ASSERT (cnt_out = '0') REPORT "Expected 0 but got " & std_logic'image(cnt_out) SEVERITY error;
         WAIT FOR c_clk_period;
-        ASSERT (cnt_out = '0') REPORT "Expected output low while at time 3/4" SEVERITY error;
+        ASSERT (cnt_out = '0') REPORT "Expected 0 but got " & std_logic'image(cnt_out) SEVERITY error;
         WAIT FOR c_clk_period;
-        ASSERT (cnt_out = '1') REPORT "Expected output high while at time 4/4" SEVERITY error;
-		
+        ASSERT (cnt_out = '1') REPORT "Expected 1 but got " & std_logic'image(cnt_out) SEVERITY error;
+        
+        -- Enable counting and verify output every fourth clock period
+        REPORT "Starting: Normal counting 2" SEVERITY note;
+        WAIT FOR c_clk_period;
+        ASSERT (cnt_out = '0') REPORT "Expected 0 but got " & std_logic'image(cnt_out) SEVERITY error;
+        WAIT FOR c_clk_period;
+        ASSERT (cnt_out = '0') REPORT "Expected 0 but got " & std_logic'image(cnt_out) SEVERITY error;
+        WAIT FOR c_clk_period;
+        ASSERT (cnt_out = '0') REPORT "Expected 0 but got " & std_logic'image(cnt_out) SEVERITY error;
+        WAIT FOR c_clk_period;
+        ASSERT (cnt_out = '1') REPORT "Expected 1 but got " & std_logic'image(cnt_out) SEVERITY error;
+        WAIT FOR c_clk_period;
+        ASSERT (cnt_out = '0') REPORT "Expected 0 but got " & std_logic'image(cnt_out) SEVERITY error;
+        WAIT FOR c_clk_period;
+        ASSERT (cnt_out = '0') REPORT "Expected 0 but got " & std_logic'image(cnt_out) SEVERITY error;
+        WAIT FOR c_clk_period;
+        ASSERT (cnt_out = '0') REPORT "Expected 0 but got " & std_logic'image(cnt_out) SEVERITY error;
+        WAIT FOR c_clk_period;
+        ASSERT (cnt_out = '1') REPORT "Expected 1 but got " & std_logic'image(cnt_out) SEVERITY error;
+        
+        -- Enable counting and verify output every fourth clock period
+        REPORT "Starting: Freezing count" SEVERITY note;
+        cnt_en <= '0';
+        WAIT FOR c_clk_period;
+        ASSERT (cnt_out = '1') REPORT "Expected 0 but got " & std_logic'image(cnt_out) SEVERITY error;
+        WAIT FOR c_clk_period;
+        ASSERT (cnt_out = '1') REPORT "Expected 0 but got " & std_logic'image(cnt_out) SEVERITY error;
+        WAIT FOR c_clk_period;
+        ASSERT (cnt_out = '1') REPORT "Expected 0 but got " & std_logic'image(cnt_out) SEVERITY error;
+        WAIT FOR c_clk_period;
+        ASSERT (cnt_out = '1') REPORT "Expected 1 but got " & std_logic'image(cnt_out) SEVERITY error;
+        cnt_en <= '1';
+        WAIT FOR c_clk_period;
+        ASSERT (cnt_out = '0') REPORT "Expected 0 but got " & std_logic'image(cnt_out) SEVERITY error;
+        WAIT FOR c_clk_period;
+        ASSERT (cnt_out = '0') REPORT "Expected 0 but got " & std_logic'image(cnt_out) SEVERITY error;
+        WAIT FOR c_clk_period;
+        ASSERT (cnt_out = '0') REPORT "Expected 0 but got " & std_logic'image(cnt_out) SEVERITY error;
+        WAIT FOR c_clk_period;
+        ASSERT (cnt_out = '1') REPORT "Expected 1 but got " & std_logic'image(cnt_out) SEVERITY error;
+        
+        -- Log end of test
+        REPORT "Finished" SEVERITY note;
+        
         -- Finish the simulation
         std.env.finish;
 		
