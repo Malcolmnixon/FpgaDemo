@@ -52,7 +52,9 @@ rule:
   
   constant_002:
     case: 'upper'   # Upper-case CONSTANT keyword
-  
+  constant_012:
+    disable: true   # Disabled for VSG issue #450
+    
   component_003:
     disable: true   # Allow comment before component
   component_004:
