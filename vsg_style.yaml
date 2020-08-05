@@ -65,6 +65,9 @@ rule:
     case: 'upper'   # Upper-case END keyword
   component_014:
     case: 'upper'   # Upper-case COMPONENT keyword
+    
+  file_002:
+    case: 'upper'   # Upper-case FILE keyword
   
   instantiation_006:
     case: 'upper'   # Upper-case PORT MAP keyword
