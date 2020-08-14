@@ -51,19 +51,37 @@ BEGIN
             cnt_out    => cnt_out
         );
 
+    --! @brief Clock generation process
+    pr_clock : PROCESS IS
+    BEGIN
+    
+        -- Low for 1/2 clock period
+        clk <= '0';
+        WAIT FOR c_clk_period / 2;
+        
+        -- High for 1/2 clock period
+        clk <= '1';
+        WAIT FOR c_clk_period / 2;
+        
+    END PROCESS pr_clock;
+    
     --! @brief Stimulus process to drive PWM unit under test
     pr_stimulus : PROCESS IS
     
         VARIABLE v_stimulus_line : line;
         VARIABLE v_name          : string(1 TO 20);
-        VARIABLE v_clk_in        : std_logic_vector(0 TO 15);
-        VARIABLE v_rst_in        : std_logic_vector(0 TO 15);
-        VARIABLE v_cnt_en_in     : std_logic_vector(0 TO 15);
-        VARIABLE v_cnt_out       : std_logic_vector(0 TO 15);
+        VARIABLE v_rst_in        : std_logic_vector(0 TO 7);
+        VARIABLE v_cnt_en_in     : std_logic_vector(0 TO 7);
+        VARIABLE v_cnt_out       : std_logic_vector(0 TO 7);
         VARIABLE v_space         : character;
         
     BEGIN
     
+        -- Initialize entity inputs
+        rst    <= '1';
+        cnt_en <= '0';
+        WAIT FOR c_clk_period;
+
         -- Open the stimulus file (and skip comment line)
         file_open(file_stimulus, "common/sim/clk_div_n_stimulus_file.txt", read_mode);
         readline(file_stimulus, v_stimulus_line);
@@ -75,8 +93,6 @@ BEGIN
             readline(file_stimulus, v_stimulus_line);
             read(v_stimulus_line, v_name);
             read(v_stimulus_line, v_space);
-            read(v_stimulus_line, v_clk_in);
-            read(v_stimulus_line, v_space);
             read(v_stimulus_line, v_rst_in);
             read(v_stimulus_line, v_space);
             read(v_stimulus_line, v_cnt_en_in);
@@ -87,12 +103,14 @@ BEGIN
             REPORT "Starting: " & v_name SEVERITY note;
             
             -- Loop for test stimulus
-            FOR t IN 0 TO 15 LOOP
-                -- Drive inputs
-                clk    <= v_clk_in(t);
+            FOR t IN 0 TO 7 LOOP
+                -- Set inputs then wait for clock to rise
                 rst    <= v_rst_in(t);
                 cnt_en <= v_cnt_en_in(t);
-                WAIT FOR c_clk_period;
+                WAIT UNTIL clk = '1';
+                
+                -- Wait for clk to fall
+                WAIT UNTIL clk = '0';
                 
                 -- Assert outputs
                 ASSERT cnt_out = v_cnt_out(t)
