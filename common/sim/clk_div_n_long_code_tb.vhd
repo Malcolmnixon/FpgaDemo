@@ -42,15 +42,15 @@ BEGIN
             cnt_out    => cnt_out
         );
 
-    --! @brief Clock generator process
-    --!
-    --! This generates the clk signal
+    --! @brief Clock generation process
     pr_clock : PROCESS IS
     BEGIN
     
+        -- Low for 1/2 clock period
         clk <= '0';
         WAIT FOR c_clk_period / 2;
-
+        
+        -- High for 1/2 clock period
         clk <= '1';
         WAIT FOR c_clk_period / 2;
         
@@ -60,7 +60,12 @@ BEGIN
     pr_stimulus : PROCESS IS
     BEGIN
     
-        -- Reset for 4 clock periods
+        -- Initialize entity inputs
+        rst    <= '1';
+        cnt_en <= '0';
+        WAIT FOR c_clk_period;
+
+        -- Reset for 8 clock periods
         REPORT "Starting: Hold in reset" SEVERITY note;
         rst    <= '1';
         cnt_en <= '0';
@@ -81,7 +86,7 @@ BEGIN
         WAIT FOR c_clk_period;
         ASSERT (cnt_out = '0') REPORT "Expected 0 but got " & std_logic'image(cnt_out) SEVERITY error;
         
-        -- Take out of reset, but keep counting disabled for 4 clock periods
+        -- Take out of reset, but keep counting disabled for 8 clock periods
         REPORT "Starting: Not enabled" SEVERITY note;
         rst <= '0';
         WAIT FOR c_clk_period;
@@ -144,11 +149,11 @@ BEGIN
         REPORT "Starting: Freezing count" SEVERITY note;
         cnt_en <= '0';
         WAIT FOR c_clk_period;
-        ASSERT (cnt_out = '1') REPORT "Expected 0 but got " & std_logic'image(cnt_out) SEVERITY error;
+        ASSERT (cnt_out = '1') REPORT "Expected 1 but got " & std_logic'image(cnt_out) SEVERITY error;
         WAIT FOR c_clk_period;
-        ASSERT (cnt_out = '1') REPORT "Expected 0 but got " & std_logic'image(cnt_out) SEVERITY error;
+        ASSERT (cnt_out = '1') REPORT "Expected 1 but got " & std_logic'image(cnt_out) SEVERITY error;
         WAIT FOR c_clk_period;
-        ASSERT (cnt_out = '1') REPORT "Expected 0 but got " & std_logic'image(cnt_out) SEVERITY error;
+        ASSERT (cnt_out = '1') REPORT "Expected 1 but got " & std_logic'image(cnt_out) SEVERITY error;
         WAIT FOR c_clk_period;
         ASSERT (cnt_out = '1') REPORT "Expected 1 but got " & std_logic'image(cnt_out) SEVERITY error;
         cnt_en <= '1';
